@@ -1,0 +1,37 @@
+Entity:
+	Concernant les Articles:
+		Article:
+			id,
+			title: string, 
+			content: text, 
+			created_at: dateTimme, 
+			author: string {lien admin (ManyToOne)},
+			category:string {lien table category (ManyToMany)},
+			commentaire: string[]{lien commentaire (OneToMany)},
+			like: {lien table like (OneToMany)}
+			image[]
+		Category
+			id,
+			category_name: string
+			
+		commentaire
+			id,
+			author: string,
+			content: text,
+			created_at: dateTime,
+			article: string {lien table article (ManyToOne)}
+		like
+			id,
+			like/dislike: boolean
+			article: string {lien table article (ManyToOne)}
+	
+	Concernant le user:
+		user:
+			FOSBUNDLEDEMERDE
+			firstName
+			lastName
+			sign_in: dateTime				
+			commentaire {lien table commentaire (OneToMany)}
+		
+		admin:
+			user_id{lien table user (OneToOne)}

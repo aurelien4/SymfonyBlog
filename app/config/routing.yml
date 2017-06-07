@@ -1,0 +1,25 @@
+admin_article_commentaire:
+    resource: "@AdminArticleBundle/Controller/CommentaireController.php"
+    type:     annotation
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+admin_article_article:
+    resource: "@AdminArticleBundle/Controller/ArticleController.php"
+    type:     annotation
+
+admin_user:
+    resource: "@AdminUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+
+admin_article:
+    resource: "@AdminArticleBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

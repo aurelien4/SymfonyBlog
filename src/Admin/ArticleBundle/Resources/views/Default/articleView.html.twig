@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% form_theme formCom 'bootstrap_3_layout.html.twig' %}
+
+{% block body %}
+    {% if article %}
+    <div class="row center article">
+        <div class="col-md-5 col-md-offset-4">
+            <h2>
+                {{ article.title }}
+            </h2>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <p>
+                {{ article.content| raw }}
+            </p>
+             <p>
+                 {{ article.createdAt |date('d-m-Y') }} {{ article.author }}
+             </p>
+                <div>
+                    <img class="img-responsive" src="{{ asset(article.image) }}" alt="Ceci est une Image et Oui :)">
+                </div>
+                {% if user != null %}
+                    {% for role in user.roles %}
+                        {% if role == 'ADMIN' %}
+                            <a class="btn btn-warning" href="{{ path('getout', {"id": article.id}) }}">Virer cette merde</a>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <hr/>
+                {% endif %}
+                {% if comment %}
+                    {% for com in comment %}
+                        <p>
+                            {{ com.author }}
+                        </p>
+                        <p>
+                            {{ com.content }}
+                        </p>
+                        <p>
+                            {{ com.createdAt| date('d-m-Y') }}
+                        </p>
+                    {% endfor %}
+                {% endif %}
+                {% if user != null %}
+                    {{ form_start(formCom) }}
+                    {{ form_widget(formCom) }}
+                    {{ form_end(formCom) }}
+                {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

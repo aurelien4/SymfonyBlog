@@ -1,0 +1,353 @@
+<?php
+
+namespace Admin\ArticleBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Article
+ *
+ * @ORM\Table(name="article")
+ * @ORM\Entity(repositoryClass="Admin\ArticleBundle\Repository\ArticleRepository")
+ */
+class Article
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="text")
+     */
+    private $content;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var string
+     * @ORM\ManyToOne(targetEntity="Admin\UserBundle\Entity\User", inversedBy="article")
+     */
+    private $author;
+
+    /**
+     * @var string
+     *@ORM\ManyToMany(targetEntity="Category", inversedBy="article")
+     *@ORM\JoinTable(name="article_category")
+     */
+    private $category;
+
+    /**
+     * @var string
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article")
+     */
+    private $commentaire;
+
+    /**
+     * @var string
+     * @ORM\ManyToOne(targetEntity="Likes", inversedBy="article")
+     */
+    private $likeDislike;
+
+    /**
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     */
+    protected $image;
+    /**
+     *
+     * @var string
+     * @Assert\File(mimeTypes={ "image/*"})
+     *
+     */
+    protected $file;
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Article
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set content
+     *
+     * @param string $content
+     *
+     * @return Article
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Article
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set author
+     *
+     * @param string $author
+     *
+     * @return Article
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return string
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set category
+     *
+     * @param string $category
+     *
+     * @return Article
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     *
+     * @return Article
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return string
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * Set likeDislike
+     *
+     * @param string $likeDislike
+     *
+     * @return Article
+     */
+    public function setLikeDislike($likeDislike)
+    {
+        $this->likeDislike = $likeDislike;
+
+        return $this;
+    }
+
+    /**
+     * Get likeDislike
+     *
+     * @return string
+     */
+    public function getLikeDislike()
+    {
+        return $this->likeDislike;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Article
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->category = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->commentaire = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add category
+     *
+     * @param \Admin\ArticleBundle\Entity\Category $category
+     *
+     * @return Article
+     */
+    public function addCategory(\Admin\ArticleBundle\Entity\Category $category)
+    {
+        $this->category[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \Admin\ArticleBundle\Entity\Category $category
+     */
+    public function removeCategory(\Admin\ArticleBundle\Entity\Category $category)
+    {
+        $this->category->removeElement($category);
+    }
+
+    /**
+     * Add commentaire
+     *
+     * @param \Admin\ArticleBundle\Entity\Commentaire $commentaire
+     *
+     * @return Article
+     */
+    public function addCommentaire(\Admin\ArticleBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaire[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire
+     *
+     * @param \Admin\ArticleBundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\Admin\ArticleBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaire->removeElement($commentaire);
+    }
+}

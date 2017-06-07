@@ -1,0 +1,155 @@
+.modal {
+
+  .modal-content {
+    padding: @4rem;
+    border: 0;
+  }
+
+  .modal-header {
+    position: relative;
+    min-height: @2rem;
+    padding: 0;
+    margin-bottom: @4rem;
+    border: 0;
+
+    .btn {
+      position: absolute;
+      top: -@1rem;
+      right: -@1rem;
+      padding: @1rem;
+      background-color: transparent;
+      border: 0;
+
+      &:focus {
+        outline: 1px dotted;
+      }
+
+
+      .close {
+        width: @2rem;
+        height: @2rem;
+        margin: 0;
+        background-image: @btn-close-icon;
+        background-size: @2rem;
+        opacity: 1;
+        filter: none;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 0;
+    border: 0;
+  }
+
+  .modal-footer {
+    padding: 0;
+    border: 0;
+
+    .btn + .btn {
+      margin-left: @2rem;
+    }
+  }
+}
+
+.modal .modal-sm {
+
+  .modal-content {
+    padding: @2rem;
+  }
+
+  .modal-header {
+    margin-bottom: 0;
+  }
+
+  .modal-footer {
+    margin: @2rem 0;
+
+    .float-xs-right {
+      float: none !important;
+      text-align: center;
+    }
+  }
+}
+
+.modal {
+  .card-block,
+  .card.card-block {
+    width: auto;
+    padding: 0;
+    margin: 0 0 @4rem;
+    border: 0;
+
+    .card-title {
+      margin-bottom: @2rem;
+    }
+  }
+
+  .card-block.has-info,
+  .card.card-block.has-info {
+    position: relative;
+    margin-left: @6rem;
+
+    .card-icon {
+      position: absolute;
+      left: -@6rem;
+    }
+
+    .card-icon span[class^="icon-"] {
+      font-size: @4-6rem;
+      line-height: 1;
+    }
+
+    &.has-info .card-icon {
+      color: @brand-info;
+    }
+  }
+}
+
+.modal .modal-sm {
+  .card.card-block {
+    margin-bottom: @2rem;
+    margin-left: 0;
+  }
+
+  .card-title {
+    font-size: @1-6rem;
+  }
+
+  .card-block.has-info,
+  .card.card-block.has-info {
+    position: relative;
+    margin-top: @2rem;
+
+    .card-icon {
+      position: absolute;
+      left: 0;
+    }
+
+    span[class^="icon-"] {
+      font-size: @3-2rem;
+    }
+
+    .card-title {
+      margin-left: @4rem;
+    }
+
+    &.on-top {
+      margin-top: 0;
+
+      .card-icon {
+        position: static;
+        margin-bottom: @2rem;
+        text-align: center;
+      }
+
+      span[class^="icon-"] {
+        font-size: @6-4rem;
+      }
+
+      .card-title {
+        margin-left: 0;
+      }
+    }
+  }
+}

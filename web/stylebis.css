@@ -1,0 +1,15 @@
+body{
+    background-color: #e4e4e4;
+}
+
+.border_left {
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+}
+.article   {
+    margin-top: 10%;
+}
+.back {
+    margin-top: 10%;
+}

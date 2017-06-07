@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}{% endblock %}
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="stylesheet" href="{{ asset('stylebis.css') }}">
+        <link rel="stylesheet" href="{{ asset('boosted-v3.3.3/dist/css/boosted2015.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('boosted-v3.3.3/dist/css/boostedIE82015.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('boosted-v3.3.3/dist/css/bootstrap-orange2015.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('boosted-v3.3.3/dist/css/bootstrap-orangeIE82015.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('boosted-v3.3.3/dist/css/orangeHelvetica.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('boosted-v3.3.3/dist/css/orangeIcons.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('style.css') }}">
+
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-offset-2">
+                <a href="#"><h1>home</h1></a>
+            </div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <div class="col-md-1 col-md-offset-7">
+                    <p class="p">{{ user.username }} {{ user.roles[0] }}|</p>
+                </div>
+                <div class="col-md-1">
+                    <a href="{{ path('fos_user_security_logout') }}">
+                        <p class="p">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }} </p>
+                    </a>
+                </div>
+            {% else %}
+                <div class="col-md-1 col-lg-offset-7">
+                    <a href="{{ path('fos_user_security_login') }}"><p class="p">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</p></a>
+                </div>
+                <div class="col-md-1">
+                    <a href="{{ path('fos_user_registration_register') }}"><p class="p">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</p></a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+{% block body %}{% endblock %}
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- jQuery validate -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="{{ asset('boosted-v3.3.3/dist/js/boosted.js') }}"></script>
+{% endblock %}
+</body>
+</html>

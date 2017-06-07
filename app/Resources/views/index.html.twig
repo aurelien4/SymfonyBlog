@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 containers">
+            {% for article in articles %}
+            <div class="row">
+                <div class="col-md-3 col-offset-2">
+                    <h3 class="h3"><a href="{{ path("viewshit",{"id": article.id}) }}">{{ article.title }}</a></h3>
+
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col-6 col-offset-3">
+                        <p>{{ article.content| raw }}</p>
+                        <p>{{ article.createdAt |date('d-m-Y') }} {{ article.author }}</p>
+                        <hr />
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
